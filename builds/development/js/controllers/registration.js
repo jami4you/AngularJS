@@ -13,5 +13,15 @@ myApp.controller('RegistrationController',
     });
   }; //login
 
+  $scope.register = function() {
+      Authentication.register($scope.user)
+        .then(function(user) {
+          Authentication.login($scope.user);
+          $location.path('/meetings');
+        }).catch(function(error) {
+          $scope.message = error.message;
+        })
+    }
+
 }); //RegistrationController
 
