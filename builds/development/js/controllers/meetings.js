@@ -1,17 +1,24 @@
+
 myApp.controller('MeetingsController',
 	function($scope, $firebase){
 
 		var ref    	= new Firebase('https://attendancejamiapp.firebaseio.com/meetings');
 
 		var meetings = $firebase(ref);
-		$scope.meetings = meetings.$asObject(); 
-		$scope.addMeeting  = function(){
+		$scope.meetings = meetings.$asObject();
+		$scope.addMeeting = function() {
 			meetings.$push({
 				name: $scope.meetingname,
 				date: Firebase.ServerValue.TIMESTAMP
 			}).then(function(){
-				$scope.meetingsname='';	
-			});//addmeeting
-		};
+				$scope.meetingname='';
+			});
+		}; //add meeting
 
+
+		$scope.deleteMeeting = function(key) {
+			meetings.$remove(key);
+		}//delete
+		
 }); //MeetingsController
+

@@ -1,8 +1,5 @@
-var myApp = angular.module('myApp', [
-	'ngRoute', 
-	'firebase',
-	'appControllers'
-]);
+var myApp = angular.module('myApp', ['ngRoute', 
+	'appControllers', 'firebase']);
 
 var appControllers = angular.module('appControllers', 
 	['firebase']);
@@ -19,8 +16,8 @@ myApp.config(['$routeProvider', function($routeProvider) {
 		}).
 		when('/meetings', {
 			templateUrl: 'views/meetings.html',
-			controller: 'MeetingsController'
-		}).
+			controller:'MeetingsController'
+			}).
 		otherwise ({
 			redirectTo: '/login'
 		});

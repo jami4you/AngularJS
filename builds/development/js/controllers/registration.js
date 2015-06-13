@@ -1,26 +1,40 @@
 myApp.controller('RegistrationController', 
-  function($scope, $firebaseAuth, $location, Authentication) {
+  function($scope, $firebaseAuth, $location) {
 
-  var ref = new Firebase('https://attendanceldcapp.firebaseio.com/');
+  var ref = new Firebase('https://attendancejamiapp.firebaseio.com/');
   var auth = $firebaseAuth(ref);
   
   $scope.login = function() {
-    Authentication.login($scope.user)
-    .then(function(user) {
+    auth.$authWithPassword({
+      email: $scope.user.email,
+      password: $scope.user.password
+    }).then(function(user){
       $location.path('/meetings');
-    }).catch(function(error) {
+    }).catch(function(error){
       $scope.message = error.message;
     });
   }; //login
 
-  $scope.register = function() {
-    Authentication.register($scope.user)
-      .then(function(user) {
-        Authentication.login($scope.user);
-        $location.path('/meetings');
-      }).catch(function(error) {
-        $scope.message = error.message;
-      });
-  }; //register
 
 }); //RegistrationController
+
+/*
+var ref = new Firebase('https://attendancejamiapp.firebaseio.com/?page=Auth');
+  var auth = $firebaseAuth(ref);
+  
+ 
+  $scope.login = function() {
+    auth.$authWithPassword({
+      email: $scope.user.email,
+      password: $scope.user.password
+    }).then(function(user){
+      $location.path('/meetings');
+    }).catch(function(error){
+      $scope.message = error.message;
+    });
+  }; //login
+
+  $scope.register = function () {
+    $location.path('/meetings');
+
+*/
