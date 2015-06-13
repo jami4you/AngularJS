@@ -1,6 +1,19 @@
 myApp.factory('Authentication', function($firebase,
-	$firebaseAuth, $routeParams, $location){
+	$firebaseAuth, $routeParams, $location, FIREBASE_URL){
 
-	var ref = new Firebase();
-	var auth = $firebase(ref);
+	var ref = new Firebase(FIREBASE_URL);
+	var auth = $firebaseAuth(ref);
+
+	//Temporary Object
+	var myObject = {
+
+		login: function(user){
+			return auth.$authWithPassword({
+				email: user.email,
+				password: user.password
+			}); //authWithPassword
+		} //login
+
+	}; //myObject
+	return myObject;
 });//myApp Factory
