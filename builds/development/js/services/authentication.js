@@ -24,6 +24,11 @@ myApp.factory('Authentication', function($firebase,
 			}); //authWithPassword
 		}, //login
 
+		logout: function(user){
+			return auth.$unauth();
+			
+		}, //logout
+
 		register: function(user) {
 			return auth.$createUser({
 				email: user.email,
@@ -42,7 +47,15 @@ myApp.factory('Authentication', function($firebase,
 
 				firebaseUsers.$set(regUser.uid, userInfo);
 			}); //promise
-		} //register
+		}, //register
+
+		requireAuth: function(){
+			return auth.$requireAuth();
+		}, //require Authentification
+
+		waitForAuth: function(){
+			return auth.$waitForAuth();
+		}, //Wait until user is Authenticated
 
 	}; //myObject
 	return myObject;
