@@ -20,8 +20,8 @@ myApp.controller('RegistrationController',
           $location.path('/meetings');
         }).catch(function(error) {
           $scope.message = error.message;
-        })
-    }
+        });
+    }; //register
 
 }); //RegistrationController
 
