@@ -1,6 +1,6 @@
 myApp.factory('Authentication', function($firebase,
 	$firebaseAuth, $rootScope, $routeParams, $location, FIREBASE_URL){
-
+ 
 	var ref = new Firebase(FIREBASE_URL);
 	var auth = $firebaseAuth(ref);
 

@@ -33,7 +33,7 @@ myApp.controller('MeetingsController',
 
 		$scope.deleteMeeting = function(key) {
 			meetingsInfo.$remove(key);
-		}; //delete
+		};//delete
 		
 }); //MeetingsController
 
